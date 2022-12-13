@@ -2676,7 +2676,7 @@ function websiteQueryBuild(event) {
 // LOGSEQ WEBSITE MODE
 // (Comment out LOCAL MODE section above and PLUGIN mode section below and uncomment this section)
 // *******************************
-mode = "website"
+// mode = "website"
 // *******************************
 
 
@@ -2684,7 +2684,7 @@ mode = "website"
 // LOGSEQ PLUGIN MODE
 // (Comment out LOCAL MODE section above and WEBSITE section above and uncomment this section)
 // *******************************
-// mode = "logseq-plugin"
+mode = "logseq-plugin"
 // *******************************
 
 // MAIN STARTING POINT
