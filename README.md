@@ -1,6 +1,5 @@
 # logseq-query-builder-plugin
 A logseq plugin that generates advanced queries from simple commands
-
 <div id="top"></div>
 # Logseq Query Builder Plugin
 
@@ -45,7 +44,7 @@ title: your text for the query title
 ```
 You can request comments describing the generated query lines by adding this line at the start of the code block
 ```
-options: includecomments
+option: includecomments
 ```
 <p align="right">(<a href="#top">back to top</a>)</p>
 
