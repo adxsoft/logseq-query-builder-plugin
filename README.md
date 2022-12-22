@@ -1,16 +1,33 @@
-# logseq-query-builder-plugin
-A logseq plugin that generates advanced queries from simple commands
 <div id="top"></div>
 # Logseq Query Builder Plugin
 
+This plugin is an implementation of the function of the online tool _Logseq Advanced Query Builder_. The underlying software for both the online tool and this plugin are shared so all commands work consistently. 
 
-- [Installation](#installation)
-- [How to Use](#how-to-use)
+## This plugin
+- recognises [Simple Commands](#simple-commands) contained in a logseq code block. 
+- Choosing **Advanced Query Builder** in the code blocks menu
+    - will generate an advanced query in a **new** child block
+    - You can alter the code block and generate another query which will add another new child block. 
+    - In this way you can experiment with generating multiple advanced queries.
+<p>
+
+- [Installing the plugin](#installation)
+- [How to Use the plugin](#how-to-use)
 - [Simple Commands](#simple-commands)
+- [Releases](#releases)
+- [Technical Information](#technical-information)
 
-## How to use
-The [Simple Commands](#simple-commands) are entered into a logseq code block<br>
-````
+
+## Online tool
+Currently plugins are not suppoerted in the mobile versions of Logseq. However you can use the online tool to buid advanced queries from a mobile browser 
+- See the FAQ at https://adxsoft.github.io/logseqadvancedquerybuilder/ for detailed instructions for using the online tool.  
+
+- The online tool has many examples you can review.
+
+
+## How to use this plugin
+The [Simple Commands](#simple-commands) are entered into a logseq code block in the structure shown below. _Note the three backticks surround the commands_<br>
+<pre>
 ```
 - commandname
     - argument
@@ -19,7 +36,7 @@ The [Simple Commands](#simple-commands) are entered into a logseq code block<br>
     - argument
     - argument
 ```
-````
+</pre>
 Optionally arguments can begin with any of these words
 ```
 and
@@ -27,7 +44,8 @@ or
 not
 ```
 
-For here is an example that selects pages in namespace physics with page property pagetype 'fluids'
+Here is an example that selects pages in namespace physics with page property pagetype 'fluids'
+<pre>
 ```
 title: Example Commands
 - pages
@@ -37,7 +55,7 @@ title: Example Commands
 - namespace
     - physics 
 ```
-
+</pre>
 You can include a title for the generated query like this
 ```
 title: your text for the query title
@@ -46,6 +64,8 @@ You can request comments describing the generated query lines by adding this lin
 ```
 option: includecomments
 ```
+
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Installation
@@ -75,7 +95,22 @@ option: includecomments
 ### Main extraction commands
 - [pages](#pages) - select pages by wildcards
 - [blocks](#blocks) - select logseq blocks by wildcards
-
+<blockquote style="border:dashed 4px rgb(231, 63, 63); padding:10px;">
+    Queries filter in two ways - pages or blocks<br><br>
+    <b>pages</b> command retrieves the special blocks that have ONLY the page information<br> such as name, page tags, page properties<br>
+    <small><i>- these page blocks are placed into the ?block variable</i></small><br><br>
+    <b>blocks</b> command retrieves every single block in the graph including the special page blocks<br>
+    <small><i>- these page blocks are placed into the ?block variable and the page this block belongs to is placed in the ?page variable</i></small><br><br>
+    You must choose a <b>pages</b> command <b>OR</b> a <b>blocks</b> command (you cannot use both together) 
+    </blockquote>                             
+    <blockquote style="border:dashed 3px rgb(97, 132, 215); padding:10px;">                            
+    <small>
+    Note. Wildcards can be full name or partial name using *<br>
+    test* - starts with text 'test'<br>
+    *end - ends with text 'end'<br>
+    *tax* - contains text 'tax'<br>
+    </small>
+</blockquote>
 ### Properties
 - [pageproperties](#pageproperties) - select pages by page properties
 - [blockproperties](#blockproperties) - select blocks by property values
@@ -105,20 +140,20 @@ option: includecomments
 ### Links
 - [pagelinks](#pagelinks) - select blocks that have links to pages<br>- note. Journal page link is your chosen format in your settings. For example <i>Dec 25th, 2022</i>
 
-### Query Result Format
+### Query Results commands
 - [collapse](#collapse) - collapse query results
 - [expand](#collapse) - expand query results
 - [showbreadcrumbs](#showbreadcrumbs) - show query breadcrumbs
 - [hidebreadcrumbs](#hidebreadcrumbs) - hide query breadcrumbs
 
-### Query optioins
+### Query options
 - [option](#option) - options for generated query
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Simple Command - Detailed Examples
 ### pages
-A page is a special block of its own that contains page-specific information including page tags, page properties etc. It is a parent to any blocks that belong to the page
+A page is a special block of its own that contains page-specific information including page tags, page properties etc. It is a parent to any blocks that belong to the page. Each page has a title and you can choose pages using their full title or wildcards patterns of their title.
 ```
 title: pages command - select all pages
 - pages
@@ -157,7 +192,11 @@ title: pages command - ignore pages (including wildcards)
     - not Queries*
 
 ```
+<p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
+
 ### blocks
+Blocks are the basic unit of information in Logseq. Blocks can contain text,tags, properties, links to other pages or blocks.
+Each block has a content property and you can choose blocks using their content or wildcards patterns of their content.
 ```
 title: select all blocks
 - blocks
@@ -181,6 +220,7 @@ title: blocks command - ignore blocks using wildcards
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### blockproperties
+Every Logseq block can contains user properties which consist of the property name and the property value. Property name cannot contains spaces. Values can be a string (in double quotes) or a number. 
 ```
 title: select and exclude blocks with block properties
 - blocks
@@ -204,6 +244,7 @@ title: block property combinations using and and or
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### blocktags
+Every Logseq block can contain tags. Tags can be selected by their full name (excluding #) or by wildcards of the tag full name.
 ```
 title: blocktags - select and exclude block level tags
 - blocks
@@ -236,6 +277,7 @@ title: block tag combinations using and and or
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### deadline
+Every Logseq block can contain a deadline date. Include this command to select only these blocks.
 ```
 title: find blocks with deadlines
 - blocks
@@ -246,6 +288,7 @@ title: find blocks with deadlines
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### deadlinebetween
+Every Logseq block can contain a deadline date. Include this command to select only these blocks whose deadline date falls within a from and to date. Dates are specified as :today or :ddd-xxxxxx where ddd is no of days and xxxxxx is before or after.
 ```
 title: find blocks with deadlines in a date range
 - blocks
@@ -257,6 +300,7 @@ title: find blocks with deadlines in a date range
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### journalsbetween
+Every Logseq journal belongs to a specific date. Include this command to select only those journals which fall within a from and to date. Dates are specified as :today or :ddd-xxxxxx where ddd is no of days and xxxxxx is before or after.
 ```
 title: find journal in a date range
 - pages
@@ -276,6 +320,7 @@ title: find journals between dates
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### journalonly
+Use this command to limit the query results to journals only, pages get excluded.
 ```
 title: find journals
 - pages
@@ -286,6 +331,8 @@ title: find journals
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### namespace
+use this command to restrict query results to one of more namespaces. Note pages or blocks have to exist at the specified level of the namespace in order for you see any results. 
+_(Note. If you only have one page which is physics/fluids and no page exists called physics then using physics as the namespace will not find physics/fluids page you must specify physics/fluid to see it in the query results. This behaviour will hopefully change one day to show all lower level pages under physics.)_
 ```
 title: only search pages in specific namespace
 - pages
@@ -316,6 +363,7 @@ title: find scheduled blocks in a namespace
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### pageproperties
+Every Logseq page can contains user properties which belong to the page. Page properties are not block properties, they belong only to the page. Page properties consist of the property name and the property value. Property name cannot contains spaces. Values can be a string (in double quotes) or a number. 
 ```
 title: select and exclude pages with page properties
 - pages
@@ -339,6 +387,7 @@ title: page property combinations using and and or
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### pagetags
+Every Logseq page can contains tags which belong to the page. Page tags are not block tags, they belong only to the page. Page tags can be selected by their full name (excluding #) or by wildcards of the tag full name.
 ```
 title: pagetags - page level tags
 - pages
@@ -368,8 +417,9 @@ title: page tag combinations using and and or
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### pagelinks
+Every logseq block can contain links to other pages or journals. This command will restrict query results to blocks that contains one or more link references. Note the date format to link to journals should be in the same format the journal titles are set in Logseq settings. 
 ```
-title: select blocks with links to journals
+title: select blocks with links to journals that use the default date setting for journals
 - blocks
     - *
 - pagelinks
@@ -380,6 +430,7 @@ title: select blocks with links to journals
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### tasks
+Every Logseq block can contains one or more tasks. This command will restrict results to include (or exclude) specific task types
 ```
 title: select and exclude task types
 - tasks
@@ -410,6 +461,7 @@ title: task and or combintions
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### scheduled
+Every Logseq block can contain a schedule date. Include this command to select only these blocks.
 ```
 title: find scheduled blocks
 - blocks
@@ -419,6 +471,7 @@ title: find scheduled blocks
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### scheduledbetween
+Every Logseq block can contain a schedule date. Include this command to select only these blocks whose schedule date falls within a from and to date. Dates are specified as :today or :ddd-xxxxxx where ddd is no of days and xxxxxx is before or after.
 ```
 title: scheduled - find scheduled blocks in a date range
 - blocks
@@ -430,9 +483,11 @@ title: scheduled - find scheduled blocks in a date range
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### option
+Currently there is only one option available. 
+_includecomments_ option will include a comment line which explains the generated query line.
 ```
-title: option - includecommandcomments
-option: includecommandcomments
+title: option - include comments for each generated query line
+option: includecomments
 - blocks
     - *
 - pagelinks
@@ -443,7 +498,7 @@ option: includecommandcomments
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### collapse 
-
+This command will cause the query results to be collapsed.
 ```
 title: collapse results
 - pages
@@ -454,6 +509,7 @@ title: collapse results
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### expand 
+This command will cause the query results to be expanded fully.
 ```
 title: expand results
 - pages
@@ -464,6 +520,7 @@ title: expand results
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### showbreadcrumbs 
+Show breadcrumb trail (parent levels in the outline) of the retrieved blocks in query results
 ```
 title: show breadcrumbs
 - pages
@@ -474,11 +531,35 @@ title: show breadcrumbs
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### hidebreadcrumbs 
+Hide the breadcrumb trail (parent levels in the outline) of the retrieved blocks in query results
 ```
 title: hide breadcrumbs
 - pages
     - testpage00*
 - hidebreadcrumb
-
 ```
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
+
+## Technical Information
+
+- Originally the online tool was developed using pyscript and redeveloped in javascript. 
+- To ensure consistency between the online tool and the plugin the javascript code is shared.
+    - A variable called **_mode_** is set to _logseq-plugin_, _website_ or _local_.
+    - All modes use index.js as common code
+    - **mode _logseq-plugin_**
+            - will operate as a logseq plugin
+            - has its own _index.html_ and _package.json_ file
+            - files are contained in the _plugin-dist_ folder
+    - **mode _website_**
+            - will operate as the online tool
+            - has its own _index.html_ and _package.json_ file
+            - files are contained in the _website-dist_ folder
+    - **mode _local_**
+            - will operate locally
+            - has its own _index.html_ and _package.json_ file
+            - files are contained in the main folder
+            - has a _index.test.js_ file which is used for unit testing with the Jest Testing Library
+
+## Releases
+- v0.1
+    - Original release - Dec 23rd 2022
