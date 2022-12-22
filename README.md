@@ -20,7 +20,7 @@ This plugin is an implementation of the function of the online tool _Logseq Adva
 
 
 ## Online tool
-Currently plugins are not suppoerted in the mobile versions of Logseq. However you can use the online tool to buid advanced queries from a mobile browser 
+Currently plugins are not supported in the mobile versions of Logseq. However you can use the online tool to buid advanced queries from a mobile browser 
 - See the FAQ at https://adxsoft.github.io/logseqadvancedquerybuilder/ for detailed instructions for using the online tool.  
 
 - The online tool has many examples you can review.
@@ -93,9 +93,24 @@ option: includecomments
 
 ## Simple Commands
 
-### Main extraction commands
-- [pages](#pages) - select pages by wildcards
-- [blocks](#blocks) - select logseq blocks by wildcards
+Commands are designed to be simple to use. 
+Most commands have one or more arguments
+<pre>
+```
+- commandname
+    - argument
+    - argument
+- commandname
+    - argument
+    - argument
+```
+</pre>
+Optionally arguments can begin with any of these words
+```
+and
+or
+not
+```
 <blockquote style="border:dashed 4px rgb(231, 63, 63); padding:10px;">
     Queries filter in two ways - pages or blocks<br><br>
     <b>pages</b> command retrieves the special blocks that have ONLY the page information<br> such as name, page tags, page properties<br>
@@ -112,7 +127,12 @@ option: includecomments
     *tax* - contains text 'tax'<br>
     </small>
 </blockquote>
+
+### Main extraction commands
+- [pages](#pages) - select pages by wildcards
+- [blocks](#blocks) - select logseq blocks by wildcards
 ### Properties
+
 - [pageproperties](#pageproperties) - select pages by page properties
 - [blockproperties](#blockproperties) - select blocks by property values
 
@@ -152,7 +172,7 @@ option: includecomments
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Simple Command - Detailed Examples
+## Simple Commands - Detailed Examples
 ### pages
 A page is a special block of its own that contains page-specific information including page tags, page properties etc. It is a parent to any blocks that belong to the page. Each page has a title and you can choose pages using their full title or wildcards patterns of their title.
 ```
@@ -196,8 +216,9 @@ title: pages command - ignore pages (including wildcards)
 <p align="right">(<a href="#simple-commands">back to Simple Commands</a>)</p>
 
 ### blocks
-Blocks are the basic unit of information in Logseq. Blocks can contain text,tags, properties, links to other pages or blocks.
-Each block has a content property and you can choose blocks using their content or wildcards patterns of their content.
+Blocks are the basic unit of information in Logseq. 
+- Blocks can contain text, tags, properties, links to other pages or blocks.
+- Each block has a content property and you can choose blocks using their content or wildcards patterns of their content.
 ```
 title: select all blocks
 - blocks
