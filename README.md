@@ -111,23 +111,26 @@ and
 or
 not
 ```
-<blockquote style="border:dashed 4px rgb(231, 63, 63); padding:10px;">
-    Queries filter in two ways - pages or blocks<br><br>
-    <b>pages</b> command retrieves the special blocks that have ONLY the page information<br> such as name, page tags, page properties<br>
-    <small><i>- these page blocks are placed into the ?block variable</i></small><br><br>
-    <b>blocks</b> command retrieves every single block in the graph including the special page blocks<br>
-    <small><i>- these page blocks are placed into the ?block variable and the page this block belongs to is placed in the ?page variable</i></small><br><br>
-    You must choose a <b>pages</b> command <b>OR</b> a <b>blocks</b> command (you cannot use both together) 
-    </blockquote>                             
-    <blockquote style="border:dashed 3px rgb(97, 132, 215); padding:10px;">                            
-    <small>
-    Note. Wildcards can be full name or partial name using *<br>
-    test* - starts with text 'test'<br>
-    *end - ends with text 'end'<br>
-    *tax* - contains text 'tax'<br>
-    </small>
-</blockquote>
+#### Important Concept 
+Queries filter in two ways - pages or blocks
 
+<b>pages</b> command retrieves the special blocks that have ONLY the page information<br> such as name, page tags, page properties<br>
+<small><i>- these page blocks are placed into the ?block variable</i></small><br><br>
+<b>blocks</b> command retrieves every single block in the graph including the special page blocks<br>
+<small><i>- these page blocks are placed into the ?block variable and the page this block belongs to is placed in the ?page variable</i></small><br><br>
+You must choose a <b>pages</b> command <b>OR</b> a <b>blocks</b> command (you cannot use both together) 
+                   
+#### Wildcards
+Wildcards can be full name or partial name using \* character<br>
+test\* - starts with text 'test'
+\*end - ends with text 'end'
+\*tax\* - contains text 'tax'
+
+Note.
+- Wildcards are used with pages or blocks command at this stage
+- Unfortunately Logseq Advanced queries do not yet support partial strings for properties
+    - see (https://github.com/logseq/logseq/issues/7410). 
+    Once this is implemented in Logseq I will be able to have wildcards for  _pageproperties_ and _blockproperties_ commands
 ### Main extraction commands
 - [pages](#pages) - select pages by wildcards
 - [blocks](#blocks) - select logseq blocks by wildcards
