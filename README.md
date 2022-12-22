@@ -1,5 +1,6 @@
 <div id="top"></div>
-# Logseq Query Builder Plugin
+
+## Logseq Query Builder Plugin
 
 This plugin is an implementation of the function of the online tool _Logseq Advanced Query Builder_. The underlying software for both the online tool and this plugin are shared so all commands work consistently. 
 
@@ -12,7 +13,7 @@ This plugin is an implementation of the function of the online tool _Logseq Adva
 <p>
 
 - [Installing the plugin](#installation)
-- [How to Use the plugin](#how-to-use)
+- [How to Use the plugin](#how-to-use-this-plugin)
 - [Simple Commands](#simple-commands)
 - [Releases](#releases)
 - [Technical Information](#technical-information)
