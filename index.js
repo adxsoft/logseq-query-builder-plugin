@@ -1,12 +1,26 @@
-// logseq-advanced-query-builder v0.1
+// logseq-advanced-query-builder v0.1 Dec 23rd 2022
+
 // set mode of execution at end of this script
-// 'local' mode for desktop testing with Jest Test framework
+// note each mode has its own index.html and package.json files
+//      index.js is common to each mode and 
+//      copied from main to to dist folders before any deployments
+
+// 'local' mode for desktop testing with Jest Test framework 
+//    - located in the main folder
 // 'logseq-plugin' for operating as a plugin within logseq
+//    - located in the plugin-dist folder
+// 'website' for operating as a online website
+//    - located in the website-dist folder
 
 // Deployment 
 // copy index.js to deploy folder
-// do not copy package.json to deploy folder as the main package.json
-//   is configure for jest testing
+// WARNING: 
+// 1. do not copy package.json or index.html to 
+//  deployment folders (plugin-dist and website-dist)
+//  as the main package.json is configured for jest testing
+// 2. do not copy main README.md to 
+//  deployment folders (plugin-dist and docs-dist)
+//  as they are specific to each deployment domain
 
 // Dictionary of query lines data 
 var querylineDict = {
@@ -2707,5 +2721,4 @@ if (mode == "website") {
     querylineDBDict = initialisteQueryLineDict();
     websiteInitialise()
 }
-
 

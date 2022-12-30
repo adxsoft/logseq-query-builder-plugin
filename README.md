@@ -7,6 +7,7 @@
     * You can alter the code block and generate another query which will add another new child block. 
     * In this way you can experiment with generating multiple advanced queries.
 ## Detailed Documentation
+
 Can be found [here](https://github.com/adxsoft/docs-logseq-query-builder-plugin)
 
 ## Installation
