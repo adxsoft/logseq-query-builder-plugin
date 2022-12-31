@@ -24,7 +24,7 @@ Can be found [here](https://github.com/adxsoft/docs-logseq-query-builder-plugin)
 * Find the plugin and click `Install`.
 
 ### Install plugin manually
-* Click the green Code button and download the zip
+* Click the green Code button above and download the zip
 * Unzip it into a folder
 * Click `Load unpacked plugin`, and select the folder where the plugin code was unzipped
 
