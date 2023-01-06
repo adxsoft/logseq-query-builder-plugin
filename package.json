@@ -4,6 +4,7 @@
   "main": "index.html",
   "logseq": {
     "id": "logseq-query-builder-plugin",
-    "title": "logseq-query-builder"
+    "title": "logseq-query-builder",
+    "icon": "./icon.png"
   }
 }
