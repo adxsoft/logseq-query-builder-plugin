@@ -18,16 +18,19 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: "v16.13.2" # You might need to adjust this value to your own version
+          node-version: "16.x" # You might need to adjust this value to your own version
       - name: Build
         id: build
         run: |
+          npm install -g yarn
+          yarn
+          yarn build
           mkdir ${{ env.PLUGIN_NAME }}
-          cp README.md package.json icon.png style.css index.html index.js LICENSE ${{ env.PLUGIN_NAME }}
+          cp LICENSE README.md package.json index.html index.js style.css  ${{ env.PLUGIN_NAME }}
+          mv dist/* ${{ env.PLUGIN_NAME }} && rm -rf dist
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
           ls
           echo "::set-output name=tag_name::$(git tag --sort version:refname | tail -n 1)"
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
