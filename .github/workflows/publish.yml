@@ -4,7 +4,7 @@ on:
   push:
     # Sequence of patterns matched against refs/tags
     tags:
-      - "v0.5" # Push events to matching any tag format, i.e. 1.0, 20.15.10
+      - '*' # Push events to matching any tag format, i.e. 1.0, 20.15.10
 
 env:
   PLUGIN_NAME: logseq-query-builder-plugin
@@ -18,20 +18,17 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: "16.x" # You might need to adjust this value to your own version
+          node-version: '16.x' # You might need to adjust this value to your own version
       - name: Build
         id: build
         run: |
-          npm install -g yarn
-          yarn
-          yarn build
+          npm i && npm run build
           mkdir ${{ env.PLUGIN_NAME }}
-          cp LICENSE README.md package.json icon.png ${{ env.PLUGIN_NAME }}
+          cp LICENSE README.md package.json icon.png *.css *.html *.js ${{ env.PLUGIN_NAME }}
           mv dist ${{ env.PLUGIN_NAME }}
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
           ls
           echo "::set-output name=tag_name::$(git tag --sort version:refname | tail -n 1)"
-
       - name: Create Release
         uses: ncipollo/release-action@v1
         id: create_release
