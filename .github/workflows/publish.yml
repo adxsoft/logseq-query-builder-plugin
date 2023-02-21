@@ -4,7 +4,7 @@ on:
   push:
     # Sequence of patterns matched against refs/tags
     tags:
-      - '*' # Push events to matching any tag format, i.e. 1.0, 20.15.10
+      - '*' # Push events to matching any tag format, i.e. 1.0, 20.15.1
 
 env:
   PLUGIN_NAME: logseq-query-builder-plugin
