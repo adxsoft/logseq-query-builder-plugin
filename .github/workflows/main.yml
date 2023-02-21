@@ -3,7 +3,7 @@
 name: Releases
 
 env:
-  PLUGIN_NAME: logseq-find-and-replace
+  PLUGIN_NAME: logseq-query-builder-plugin
 
 # Controls when the action will run.
 on:
