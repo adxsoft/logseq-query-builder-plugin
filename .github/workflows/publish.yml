@@ -4,14 +4,15 @@ on:
   push:
     # Sequence of patterns matched against refs/tags
     tags:
-      - '*' # Push events to matching any tag format, i.e. 1.0, 20.15.1
+      - '0.4' # Push events to matching any tag format, i.e. 1.0, 20.15.10
 
 env:
-  PLUGIN_NAME: logseq-query-builder-plugin
+  PLUGIN_NAME: ${{ github.event.repository.name }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
@@ -23,7 +24,7 @@ jobs:
         run: |
           npm i && npm run build
           mkdir ${{ env.PLUGIN_NAME }}
-          cp LICENSE README.md package.json icon.png *.css *.html *.js ${{ env.PLUGIN_NAME }}
+          cp LICENSE README.md package.json icon.png ${{ env.PLUGIN_NAME }}
           mv dist ${{ env.PLUGIN_NAME }}
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
           ls
