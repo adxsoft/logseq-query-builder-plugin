@@ -18,8 +18,6 @@ Can be found [here](https://github.com/adxsoft/docs-logseq-query-builder-plugin)
 * Click 3 dots and go to Plugins (or `Esc t p`).
 
 ### Install plugin from the Marketplace (recommended) 
-* only when plugin is approved and placed in the marketplace
-    * as at Dec 29th 2022 not yet approved for the market place
 * Click the `Marketplace` button and then click `Plugins`.
 * Find the plugin and click `Install`.
 
