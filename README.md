@@ -50,3 +50,5 @@ Can be found [here](https://github.com/adxsoft/docs-logseq-query-builder-plugin)
 ## Releases
 - v0.1
     - Original release - Dec 30th 2022
+- v0.7
+    - First release to the logseq marketplace 23rd Feb 2023
