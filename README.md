@@ -10,6 +10,10 @@
 
 Can be found [here](https://github.com/adxsoft/docs-logseq-query-builder-plugin)
 
+### Do not use tabs in commands
+*Note. as this code also supports the web site at https://adxsoft.github.io/logseqadvancedquerybuilder/ the use of tabs for indentation of the simple commands is not possible*
+So for consistency between the online tool and the plugin you can use any number of leading spaces but the indentations must be consistent. I would suggest either two or four spaces is a good indentation value.
+
 ## Installation
 ### Preparation
 * Click the 3 dots in the righthand corner and go to **Settings**.
